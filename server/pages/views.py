@@ -28,16 +28,14 @@ def getSecretView(request):
 
 		username = request.GET.get('user')
 		user = User.objects.get(username=username)
-		#FLAW-3
-		# if user.username != request.user.username:
-		# 	raise Exception('Wrong value for user!')
-
 
 		secret_id = int(request.GET.get('id'))
-
+		#FLAW-3
+		# secret = list(set(secret.secret for secret in Secret.objects.filter(user__username = request.user, id = secret_id)))
 		secret = list(set(secret.secret for secret in Secret.objects.filter(user__username = user, id = secret_id)))
 
 		return HttpResponse(f'<h1>Your secret: {secret[0]}</h1>')
+
 	#FLAW-5
 	# except Exception as e:
 	# 	return errorHandler(request, e)

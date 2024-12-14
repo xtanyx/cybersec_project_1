@@ -24,6 +24,8 @@
       <ul>
         {% for s in secrets %}
         
+        <!-- Flaw-3 -->
+        <!-- <a href='/secret/?id={{s.id}}'><li>{{s.secret}}</li></a> -->
         <a href='/secret/?user={{user.username}}&id={{s.id}}'><li>{{s.secret}}</li></a>
 
         {% endfor %}
